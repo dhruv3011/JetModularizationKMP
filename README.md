@@ -107,9 +107,8 @@ Houses the iOS app entry point and UI integrations.
 ## 📘 Learnings & Features
 
 This project helps you understand how to:
-```bash
-✔ Set up Kotlin Multiplatform with Compose UI
-✔ Structure shared modules vs platform modules
-✔ Build for Android and iOS from the same codebase
-✔ Modularize clean architecture layers
-```
+
+✔ Set up Kotlin Multiplatform with Compose UI  
+✔ Structure shared modules vs platform modules  
+✔ Build for Android and iOS from the same codebase  
+✔ Modularize clean architecture layers  
