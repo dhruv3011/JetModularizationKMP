@@ -44,13 +44,21 @@ konan/
 ############################
 # iOS (Xcode)
 ############################
+# Xcode workspace & user data
 *.xcworkspace
-*.xcuserstate
 *.xcuserdata/
+*.xcuserstate
 DerivedData/
+
+# CocoaPods
 Pods/
 Podfile.lock
-*.pbxuser
-*.mode1v3
-*.mode2v3
-*.perspectivev3
+
+# xcframeworks / build
+**/*.xcframework
+**/iosApp/build/
+
+############################
+# Compose Multiplatform
+############################
+composeApp/build/
