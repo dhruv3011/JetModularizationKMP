@@ -96,7 +96,7 @@ data class GithubRepoDto(
     @SerialName("labels_url")
     val labelsUrl: String,
     @SerialName("language")
-    val language: String,
+    val language: String? = null,
     @SerialName("languages_url")
     val languagesUrl: String,
     @SerialName("merges_url")

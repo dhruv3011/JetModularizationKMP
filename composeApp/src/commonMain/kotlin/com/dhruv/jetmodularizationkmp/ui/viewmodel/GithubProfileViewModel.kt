@@ -4,13 +4,17 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dhruv.jetmodularizationkmp.domain.model.GithubUser
 import com.dhruv.jetmodularizationkmp.domain.repository.GithubRepository
+import com.dhruv.jetmodularizationkmp.domain.usecase.GetUserProfileUseCase
+import com.dhruv.jetmodularizationkmp.domain.usecase.GetUserReposUseCase
+import com.dhruv.jetmodularizationkmp.domain.utils.ServerResponse
 import com.dhruv.jetmodularizationkmp.ui.profile.ProfileUiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 class GithubProfileViewModel (
-    private val repository: GithubRepository
+    private val getUserProfileUseCase: GetUserProfileUseCase,
+    private val getUserReposUseCase: GetUserReposUseCase
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow<ProfileUiState>(ProfileUiState.Idle)
@@ -22,16 +26,46 @@ class GithubProfileViewModel (
         viewModelScope.launch {
             _uiState.value = ProfileUiState.Loading
 
-            val user = repository.getUserProfile(username)
-
-            if (user == null) {
-                _uiState.value = ProfileUiState.Error("User not found or network error")
-                return@launch
+            getUserProfileUseCase(username).collect { result ->
+                when (result) {
+                    is ServerResponse.Loading -> {
+                        _uiState.value = ProfileUiState.Loading
+                    }
+                    is ServerResponse.Error -> {
+                        _uiState.value = ProfileUiState.Error(result.message ?: "Unknown Error")
+                    }
+                    is ServerResponse.Success -> {
+                        val user = result.data
+                        if (user != null) {
+                            fetchReposForUser(user)
+                        } else {
+                            _uiState.value = ProfileUiState.Error("User data is empty")
+                        }
+                    }
+                }
             }
+        }
+    }
 
-            val repos = repository.getUserRepos(username)
+    private suspend fun fetchReposForUser(user: GithubUser) {
+        getUserReposUseCase(user.login).collect { repoResponse ->
+            when (repoResponse) {
+                is ServerResponse.Success -> {
+                    _uiState.value = ProfileUiState.Success(
+                        user = user,
+                        repos = repoResponse.data ?: emptyList()
+                    )
+                }
+                is ServerResponse.Error -> {
+                    _uiState.value = ProfileUiState.Success(
+                        user = user,
+                        repos = emptyList()
+                    )
+                }
+                is ServerResponse.Loading -> {
 
-            _uiState.value = ProfileUiState.Success(user, repos)
+                }
+            }
         }
     }
 }

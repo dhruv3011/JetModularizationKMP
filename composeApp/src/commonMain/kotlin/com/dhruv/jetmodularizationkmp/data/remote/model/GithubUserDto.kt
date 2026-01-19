@@ -32,17 +32,17 @@ data class GithubUserDto(
     @SerialName("gravatar_id")
     val gravatarId: String,
     @SerialName("hireable")
-    val hireable: Boolean,
+    val hireable: Boolean?,
     @SerialName("html_url")
     val htmlUrl: String,
     @SerialName("id")
     val id: Int,
     @SerialName("location")
-    val location: String,
+    val location: String? = null,
     @SerialName("login")
     val login: String,
     @SerialName("name")
-    val name: String,
+    val name: String? = null,
     @SerialName("node_id")
     val nodeId: String,
     @SerialName("organizations_url")
