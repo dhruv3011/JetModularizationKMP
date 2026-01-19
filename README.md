@@ -1,3 +1,13 @@
+# JetModularizationKMP
+
+## 🚀 App Demo
+
+### Android
+![Android Demo](demo/Android_App_Demo.gif)
+
+### iOS
+![iOS Demo](demo/iOS_App_Demo.gif)
+
 This is a Kotlin Multiplatform project targeting Android, iOS.
 
 * [/composeApp](./composeApp/src) is for code that will be shared across your Compose Multiplatform applications.
