@@ -51,7 +51,7 @@ This project uses:
 | Tooling | Android Studio / Xcode |
 | Platforms | Android & iOS |
 
-> This structure lets you write UI logic once in `composeApp`, and share as much code as possible across platforms. :contentReference[oaicite:0]{index=0}
+> This structure lets you write UI logic once in `composeApp`, and share as much code as possible across platforms.
 
 ---
 
