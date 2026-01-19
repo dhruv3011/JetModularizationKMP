@@ -1,0 +1,56 @@
+############################
+# Gradle
+############################
+.gradle/
+build/
+**/build/
+!**/src/**/build/
+
+############################
+# Local configuration
+############################
+local.properties
+gradle.properties
+
+############################
+# IntelliJ / Android Studio
+############################
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+
+############################
+# Kotlin
+############################
+.kotlin/
+
+############################
+# KMP / Native
+############################
+**/.gradle/
+**/.kotlin/
+**/.konan/
+konan/
+
+############################
+# Android
+############################
+*.apk
+*.aab
+*.keystore
+
+############################
+# iOS (Xcode)
+############################
+*.xcworkspace
+*.xcuserstate
+*.xcuserdata/
+DerivedData/
+Pods/
+Podfile.lock
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
