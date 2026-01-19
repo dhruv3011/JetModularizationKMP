@@ -1,44 +1,115 @@
 # JetModularizationKMP
 
-## 🚀 App Demo
+## 🚀 Overview
+
+JetModularizationKMP is a **small Kotlin Multiplatform project** showcasing a **clean architecture** approach with **shared business logic and UI** across **Android and iOS** apps.  
+It uses Kotlin Multiplatform (KMP) with a Compose‑based UI in a modularized structure.
+
+---
+
+## 📱 App Demo
 
 | Android | iOS |
 |---------|-----|
 | ![Android Demo](demo/Android_App_Demo.gif) | ![iOS Demo](demo/iOS_App_Demo.gif) |
 
+---
 
-This is a Kotlin Multiplatform project targeting Android, iOS.
+## 🧠 What This Project Shows
 
-* [/composeApp](./composeApp/src) is for code that will be shared across your Compose Multiplatform applications.
-  It contains several subfolders:
-  - [commonMain](./composeApp/src/commonMain/kotlin) is for code that’s common for all targets.
-  - Other folders are for Kotlin code that will be compiled for only the platform indicated in the folder name.
-    For example, if you want to use Apple’s CoreCrypto for the iOS part of your Kotlin app,
-    the [iosMain](./composeApp/src/iosMain/kotlin) folder would be the right place for such calls.
-    Similarly, if you want to edit the Desktop (JVM) specific part, the [jvmMain](./composeApp/src/jvmMain/kotlin)
-    folder is the appropriate location.
+This repo demonstrates:
 
-* [/iosApp](./iosApp/iosApp) contains iOS applications. Even if you’re sharing your UI with Compose Multiplatform,
-  you need this entry point for your iOS app. This is also where you should add SwiftUI code for your project.
+✔ Kotlin Multiplatform Project (KMP) setup  
+✔ Modularization by layers (shared + platform code)  
+✔ Compose Multiplatform UI for Android and iOS  
+✔ Clear separation of common, Android‑only, and iOS‑only modules
 
-### Build and Run Android Application
+The project structure includes:
 
-To build and run the development version of the Android app, use the run configuration from the run widget
-in your IDE’s toolbar or build it directly from the terminal:
-- on macOS/Linux
-  ```shell
-  ./gradlew :composeApp:assembleDebug
-  ```
-- on Windows
-  ```shell
-  .\gradlew.bat :composeApp:assembleDebug
-  ```
+📦 JetModularizationKMP
+┣ 📂 composeApp ← Shared multiplatform UI + logic
+┣ 📂 iosApp ← iOS specific entry point
+┣ 📂 gradle ← Gradle configuration
+┣ 📜 build.gradle.kts
+┣ 📜 settings.gradle.kts
+┗ 📜 .gitignore
 
-### Build and Run iOS Application
-
-To build and run the development version of the iOS app, use the run configuration from the run widget
-in your IDE’s toolbar or open the [/iosApp](./iosApp) directory in Xcode and run it from there.
 
 ---
 
-Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
+## 🛠 Tech Stack
+
+This project uses:
+
+| Layer | Technology |
+|-------|------------|
+| Shared logic | **Kotlin Multiplatform (KMP)** |
+| UI | **Compose Multiplatform** |
+| Android entry | Android + Compose |
+| iOS entry | Swift + Compose UI Integration |
+| Build system | **Gradle (Kotlin DSL)** |
+| Tooling | Android Studio / Xcode |
+| Platforms | Android & iOS |
+
+> This structure lets you write UI logic once in `composeApp`, and share as much code as possible across platforms. :contentReference[oaicite:0]{index=0}
+
+---
+
+## 📦 Libraries & Plugins
+
+This project primarily uses official Kotlin and Compose tools:
+
+- **kotlin("multiplatform")** — Kotlin Multiplatform plugin  
+- **Compose Multiplatform** — Shared UI framework  
+- **Android Gradle Plugin** — For building Android  
+- **Xcode + CocoaPods** (when integrating shared framework into the iOS app)
+
+For dependency management you likely use version catalogs (`libs.versions.toml`) to organize libraries across modules.
+
+---
+
+## 🚀 Build & Run
+
+### Android
+
+Use Android Studio or terminal:
+
+```bash
+./gradlew :composeApp:assembleDebug
+```
+
+Then install the APK on an emulator or device.
+
+### iOS
+
+1. Open the iosApp folder in Xcode
+2. Make sure you’ve built the shared Kotlin framework
+3. Run the app on an iOS simulator or device
+
+---
+
+## 📁 Project Structure
+
+### composeApp
+
+Contains the shared code:
+```bash
+commonMain/         → Shared business logic + shared Compose UI
+androidMain/        → Android‑specific code
+iosMain/            → iOS‑specific code
+```
+### iosApp
+
+Houses the iOS app entry point and UI integrations.
+
+---
+
+## 📘 Learnings & Features
+
+This project helps you understand how to:
+```bash
+✔ Set up Kotlin Multiplatform with Compose UI
+✔ Structure shared modules vs platform modules
+✔ Build for Android and iOS from the same codebase
+✔ Modularize clean architecture layers
+```
