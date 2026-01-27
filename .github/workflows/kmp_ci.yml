@@ -33,13 +33,13 @@ jobs:
           path: composeApp/build/outputs/apk/debug/*.apk
 
       - name: Build iOS Framework
-        run: ./gradlew :composeApp:assembleXCFramework
+        run: ./gradlew :composeApp:assembleDebugAppleFrameworkForXcode
 
       - name: Upload iOS Framework
         uses: actions/upload-artifact@v4
         with:
           name: Shared-iOS-Framework
-          path: composeApp/build/XCFrameworks/debug/*.xcframework
+          path: composeApp/build/bin/iosArm64/debugFramework/*.framework
 
       - name: Run Unit Tests
         run: ./gradlew test
