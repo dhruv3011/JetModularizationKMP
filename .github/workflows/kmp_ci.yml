@@ -24,7 +24,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: Build Debug APK
-        run: ./gradlew assembleDebug
+        run: ./gradlew :composeApp:assembleDebug
 
       - name: Upload Android APK
         uses: actions/upload-artifact@v4
@@ -33,13 +33,13 @@ jobs:
           path: composeApp/build/outputs/apk/debug/*.apk
 
       - name: Build iOS Framework
-        run: ./gradlew :composeApp:assembleDebugAppleFrameworkForXcode
+        run: ./gradlew :composeApp:linkDebugFrameworkIosSimulatorArm64
 
       - name: Upload iOS Framework
         uses: actions/upload-artifact@v4
         with:
-          name: Shared-iOS-Framework
-          path: composeApp/build/bin/iosArm64/debugFramework/*.framework
+          name: iOS-Framework
+          path: "composeApp/build/bin/iosSimulatorArm64/debugFramework/*.framework"
 
       - name: Run Unit Tests
         run: ./gradlew test
