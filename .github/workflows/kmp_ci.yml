@@ -39,7 +39,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: iOS-Framework
-          path: "composeApp/build/bin/iosSimulatorArm64/debugFramework/*.framework"
+          path: composeApp/build/bin/iosSimulatorArm64/debugFramework/**
 
       - name: Run Unit Tests
         run: ./gradlew test
